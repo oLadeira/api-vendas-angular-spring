@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
 @Entity
 public class Cliente implements Serializable{
@@ -29,6 +30,11 @@ public class Cliente implements Serializable{
 	
 	@Column(name = "data_cadastro")
 	private LocalDate dataCadastro;
+	
+	@PrePersist //antes do objeto persistir no banco, o codigo abaixo será executado
+	public void prePersist() {
+		setDataCadastro(LocalDate.now());
+	}
 	
 	@OneToMany(mappedBy = "cliente")
 	List<Servico> servicos = new ArrayList<>();
