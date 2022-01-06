@@ -22,7 +22,9 @@ public class TestConfig implements CommandLineRunner{
 
 		Cliente c1 = new Cliente(null, "Pedro Henrique", "33333333333", null);
 		
-		clienteRepository.saveAll(Arrays.asList(c1));
+		Cliente c2 = new Cliente(null, "Gustavo Silva", "44444444444", null);
+		
+		clienteRepository.saveAll(Arrays.asList(c1, c2));
 	}
 	
 	
