@@ -29,12 +29,12 @@ public class Cliente implements Serializable{
 	private Integer id;
 	
 	@Column(nullable = false, length = 150)
-	@NotEmpty
+	@NotEmpty(message = "{campo.nome.obrigatorio}") //config/InternacionalizacaoConfig.java
 	private String nome;
 	
 	@Column(nullable = false, length = 11)
-	@NotNull
-	@CPF
+	@NotNull(message = "{campo.cpf.obrigatorio}")
+	@CPF(message = "{campo.cpf.invalido}")
 	private String cpf;
 	
 	@Column(name = "data_cadastro", updatable = false) //updatable - atributo nunca será atualizado
