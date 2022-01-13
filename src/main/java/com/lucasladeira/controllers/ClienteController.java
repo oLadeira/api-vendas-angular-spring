@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,8 @@ import com.lucasladeira.entities.Cliente;
 import com.lucasladeira.services.ClienteService;
 
 @RestController
-@RequestMapping("cliente")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("api/cliente")
 public class ClienteController {
 	
 	@Autowired
@@ -38,7 +40,7 @@ public class ClienteController {
 	public Cliente getById(@PathVariable Integer id) {
 		return clienteService.getById(id);
 	}
-	
+		
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void save(@RequestBody @Valid Cliente cliente) {
