@@ -2,6 +2,7 @@ package com.lucasladeira.services;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class ServicoPrestadoService {
 		clienteRepository.findById(servicoPrestado.getCliente().getId())
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
 		servicoPrestadoRepository.save(servicoPrestado);
+	}
+	
+	public List<ServicoPrestado> procurar (String nome, Integer mes){
+		return servicoPrestadoRepository.findByNomeClienteAndMes("%" + nome + "%", mes);
 	}
 	
 	public ServicoPrestado fromDTO(ServicoPrestadoDTO dto) {		
