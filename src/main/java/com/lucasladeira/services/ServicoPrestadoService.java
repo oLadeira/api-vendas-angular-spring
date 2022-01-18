@@ -35,6 +35,10 @@ public class ServicoPrestadoService {
 		return servicoPrestadoRepository.findByNomeClienteAndMes("%" + nome + "%", mes);
 	}
 	
+	public ServicoPrestado procurarPorId(Integer id) {
+		return servicoPrestadoRepository.findById(id).get();
+	}
+	
 	public ServicoPrestado fromDTO(ServicoPrestadoDTO dto) {		
 		LocalDate date = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));	
 		//Optional<Cliente>cliente = clienteRepository.findById(dto.getIdCliente());
@@ -45,7 +49,11 @@ public class ServicoPrestadoService {
 		ServicoPrestado servicoPrestado = new ServicoPrestado();
 		
 		servicoPrestado.setDescricao(dto.getDescricao());
-		servicoPrestado.setValor(Double.parseDouble(dto.getValor()));
+		
+		//dto.getValor().replaceAll(",", ".");
+		//Double.parseDouble( dto.getValor().replaceAll(",", ".") )
+		servicoPrestado.setValor( Double.parseDouble(dto.getValor()) );
+		
 		servicoPrestado.setData(date);
 		servicoPrestado.setCliente(cliente.get());
 		return servicoPrestado;
