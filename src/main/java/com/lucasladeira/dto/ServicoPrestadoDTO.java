@@ -2,14 +2,24 @@ package com.lucasladeira.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 
 public class ServicoPrestadoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message = "{campo.descricao.obrigatorio}")
 	private String descricao;
+	
+	@NotEmpty(message = "{campo.valor.obrigatorio}")
 	private String valor;
+	
+	
 	private String data;
+	
+	@NotNull(message = "{campo.cliente.obrigatorio}")
 	private Integer idCliente;
 	
 	
