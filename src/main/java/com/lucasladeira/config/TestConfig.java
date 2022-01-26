@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.lucasladeira.entities.Cliente;
-import com.lucasladeira.entities.ServicoPrestado;
 import com.lucasladeira.repositories.ClienteRepository;
-import com.lucasladeira.repositories.ServicoPrestadoRepository;
 
 @Configuration
 @Profile("test")
@@ -19,8 +17,8 @@ public class TestConfig implements CommandLineRunner{
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	@Autowired
-	private ServicoPrestadoRepository servicoPrestadoRepository;
+//	@Autowired
+//	private ServicoPrestadoRepository servicoPrestadoRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
