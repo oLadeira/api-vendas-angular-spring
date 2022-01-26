@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
+
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
@@ -16,9 +17,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
-		.authorizeHttpRequests()
+		.authorizeRequests()
 		//.antMatchers("/api/clientes/**").hasRole("USER") //permitindo somente USER
 		.antMatchers("/api/usuarios").permitAll() //permitindo todos
+		.antMatchers("/h2-console/**").permitAll()
 		.antMatchers("/api/cliente/**", "/api/servicos-prestados/**").authenticated()
 		.anyRequest().denyAll();//recusar qualquer outra requisicao
 	}
