@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.lucasladeira.entities.Usuario;
 import com.lucasladeira.repositories.UsuarioRepository;
+import com.lucasladeira.services.exceptions.UsuarioCadastradoException;
 
 @Service
 public class UsuarioService implements UserDetailsService{
@@ -28,4 +29,13 @@ public class UsuarioService implements UserDetailsService{
 				.build(); //criando uma instancia de UserDetails
 	}
 
+	public Usuario save (Usuario usuario) {
+		boolean exists = usuarioRepository.existsByUsername(usuario.getUsername());
+		if (exists) {
+			throw new UsuarioCadastradoException(usuario.getUsername());
+		}
+		return usuarioRepository.save(usuario);		
+	}
+	
+	
 }
